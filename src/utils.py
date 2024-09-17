@@ -1,6 +1,5 @@
 import json
 import os
-from typing import Any
 
 from src.category import Category
 from src.product import Product

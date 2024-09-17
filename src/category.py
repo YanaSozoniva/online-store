@@ -1,6 +1,3 @@
-from src.product import Product
-
-
 class Category:
     """Класс для представления Категории продукта"""
 
@@ -19,6 +16,3 @@ class Category:
 
         Category.count_categories += 1
         Category.count_products += len(products) if products else 0
-
-
-

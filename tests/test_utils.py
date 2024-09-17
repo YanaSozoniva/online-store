@@ -1,11 +1,13 @@
 from unittest.mock import patch
-from src.utils import read_json, create_objects_json
 
 import pytest
 
+from src.utils import create_objects_json, read_json
+
+
 @pytest.fixture
 def path_json():
-    return r'C:\Users\user\Desktop\skyPro\online store\data\products.json'
+    return r"C:\Users\user\Desktop\skyPro\online store\data\products.json"
 
 
 @patch("src.utils.json.load")
@@ -36,6 +38,6 @@ def test_create_objects_json(json_data):
     """Тестирования успешного преобразования в класс"""
 
     result = create_objects_json(json_data)
-    assert result[0].name == 'Смартфоны'
+    assert result[0].name == "Смартфоны"
     assert result[0].count_products == 5
     assert result[0].products[0]

@@ -1,8 +1,9 @@
-import os
 import json
+import os
+from typing import Any
 
-from src.product import Product
 from src.category import Category
+from src.product import Product
 
 
 def read_json(path_file: str) -> dict | str:
@@ -12,19 +13,20 @@ def read_json(path_file: str) -> dict | str:
 
     full_path = os.path.abspath(path_file)
 
-    with open(full_path, 'r', encoding='UTF-8') as json_file:
+    with open(full_path, "r", encoding="UTF-8") as json_file:
         data_product = json.load(json_file)
 
     return data_product
 
 
-def create_objects_json(data: dict):
+def create_objects_json(data: dict) -> list[Category]:
+    """Функция создает объекты классов"""
     categories = []
     for category in data:
         products = []
-        for product in category['products']:
+        for product in category["products"]:
             products.append(Product(**product))
-        category['products'] = products
+        category["products"] = products
 
         categories.append(Category(**category))
 

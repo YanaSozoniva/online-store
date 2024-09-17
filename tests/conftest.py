@@ -37,3 +37,24 @@ def category_2():
                 Product('55" QLED 4K', "Фоновая подсветка", 123000.0, 7)
             ]
     )
+
+
+@pytest.fixture
+def json_data():
+    """Фикстура, создающая тестовый json"""
+
+    test_dict = [
+  {
+    "name": "Смартфоны",
+    "description": ("Смартфоны, как средство не только коммуникации,"
+                    " но и получение дополнительных функций для удобства жизни"),
+    "products": [
+      {
+        "name": "Samsung Galaxy C23 Ultra",
+        "description": "256GB, Серый цвет, 200MP камера",
+        "price": 180000.0,
+        "quantity": 5
+      }]
+  }
+    ]
+    return test_dict

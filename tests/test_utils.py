@@ -39,6 +39,7 @@ def test_create_objects_json(json_data):
 
     result = create_objects_json(json_data)
     assert result[0].name == "Смартфоны"
-    assert result[0].description == ("Смартфоны, как средство не только коммуникации,"
-                                     " но и получение дополнительных функций для удобства жизни")
+    assert result[0].description == (
+        "Смартфоны, как средство не только коммуникации," " но и получение дополнительных функций для удобства жизни"
+    )
     assert result[0].products[0]

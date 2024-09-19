@@ -1,4 +1,6 @@
 from src.product import Product
+
+
 class Category:
     """Класс для представления Категории продукта"""
 
@@ -21,9 +23,9 @@ class Category:
     @property
     def products(self):
         """Геттер для вывода списка продуктов в виде строки"""
-        products_str = ''
+        products_str = ""
         for product in self.__products:
-            products_str += f'{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n'
+            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
 
         return products_str
 
@@ -36,4 +38,3 @@ class Category:
         """Метод для добавления товаров в категорию"""
         self.__products.append(product)
         Category.count_products += 1
-

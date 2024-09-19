@@ -15,9 +15,11 @@ def test_category(category_1, category_2):
 
 def test_products_property(category_1):
     """Тестирование геттера вывода списка продуктов"""
-    assert category_1.products == ('Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n'
-                                   'Iphone 15, 210000.0 руб. Остаток: 8 шт.\n'
-                                   'Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n')
+    assert category_1.products == (
+        "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+    )
 
 
 def test_add_product(category_1, product_1):
@@ -25,9 +27,11 @@ def test_add_product(category_1, product_1):
     assert len(category_1.products_in_list) == 3
 
     category_1.add_product(product_1)
-    assert category_1.products == ('Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n'
-                                   'Iphone 15, 210000.0 руб. Остаток: 8 шт.\n'
-                                   'Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n'
-                                   'Samsung Galaxy S23 Ultra, 23100 руб. Остаток: 5 шт.\n')
+    assert category_1.products == (
+        "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+        "Samsung Galaxy S23 Ultra, 23100 руб. Остаток: 5 шт.\n"
+    )
 
     assert len(category_1.products_in_list) == 4

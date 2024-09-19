@@ -31,3 +31,18 @@ def test_new_product_and_list_products(category_1):
     assert new_product.price == 180000.0
     assert new_product.quantity == 8
 
+
+def test_price_property(product_1):
+    """Тестирование геттера price"""
+    assert product_1.price == 23100
+
+
+def test_price_setter(capsys, product_1):
+    """Тестирование сеттера price"""
+    product_1.price = 2500
+    assert product_1.price == 2500
+
+    product_1.price = -123
+    message = capsys.readouterr()
+    assert message.out == 'Цена не должна быть нулевая или отрицательная\n'
+    assert product_1.price == 2500

@@ -38,6 +38,6 @@ def test_add_product(category_1, product_1):
 
 
 def test_category_str(category_1):
-    """Тестирование магического метода str для Category"""
-    assert str(category_1) == 'Смартфоны, количество продуктов: 27 шт.'
+    """Тестирование магического метода str класса Category"""
+    assert str(category_1) == "Смартфоны, количество продуктов: 27 шт."
     assert category_1.all_count_product == 27

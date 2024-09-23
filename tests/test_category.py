@@ -1,3 +1,6 @@
+import pytest
+
+
 def test_category(category_1, category_2):
     """Тестирование корректности инициализации объектов класса Category"""
     assert category_1.name == "Смартфоны"
@@ -41,3 +44,16 @@ def test_category_str(category_1):
     """Тестирование магического метода str класса Category"""
     assert str(category_1) == "Смартфоны, количество продуктов: 27 шт."
     assert category_1.all_count_product == 27
+
+
+def test_product_iterator(product_iterator):
+    iter(product_iterator)
+
+    assert product_iterator.index == 0
+    assert next(product_iterator).name == "Samsung Galaxy S23"
+    assert next(product_iterator).name == "Iphone 15"
+    assert product_iterator.index == 2
+    assert next(product_iterator).name == "Xiaomi Redmi Note 11"
+
+    with pytest.raises(StopIteration):
+        next(product_iterator)

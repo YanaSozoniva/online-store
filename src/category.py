@@ -20,12 +20,17 @@ class Category:
         Category.count_categories += 1
         Category.count_products += len(products) if products else 0
 
+    def __str__(self):
+        """Метод, который отображает информацию об объекте класса Category для пользователей"""
+        self.all_count_product = sum(product.quantity for product in self.__products)
+        return f"{self.name}, количество продуктов: {self.all_count_product} шт."
+
     @property
     def products(self):
         """Геттер для вывода списка продуктов в виде строки"""
         products_str = ""
         for product in self.__products:
-            products_str += f"{product.name}, {product.price} руб. Остаток: {product.quantity} шт.\n"
+            products_str += f"{str(product)}\n"
 
         return products_str
 

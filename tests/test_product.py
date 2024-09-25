@@ -77,3 +77,13 @@ def test_price_setter_price_is_lower_answer_no(product_1):
         product_1.price = 2500
 
     assert product_1.price == 23100
+
+
+def test_product_str(product_1):
+    """Тестирование магического метода str класса Product"""
+    assert str(product_1) == "Samsung Galaxy S23 Ultra, 23100 руб. Остаток: 5 шт."
+
+
+def test_products_add(product_1, product_2):
+    """Тестирование суммы произведений цены на количество у двух объектов класса Product"""
+    assert product_1 + product_2 == 1165500

@@ -2,6 +2,7 @@ import pytest
 
 from src.category import Category
 from src.product import Product
+from src.product_iterator import ProductIterator
 
 
 @pytest.fixture()
@@ -9,6 +10,11 @@ def product_1():
     return Product(
         name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=23100, quantity=5
     )
+
+
+@pytest.fixture()
+def product_2():
+    return Product(name="Iphone 15", description="512GB, Gray space", price=210000, quantity=5)
 
 
 @pytest.fixture()
@@ -58,3 +64,8 @@ def json_data():
         }
     ]
     return test_dict
+
+
+@pytest.fixture()
+def product_iterator(category_1):
+    return ProductIterator(category_1)

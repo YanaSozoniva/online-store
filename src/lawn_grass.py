@@ -9,3 +9,12 @@ class LawnGrass(Product):
         self.country = country
         self.germination_period = germination_period
         self.color = color
+
+    def __add__(self, other):
+        """Метод возвращает сумму произведений цены на количество у двух объектов,
+        принадлежащих только классу Смартфон"""
+        if type(other) is LawnGrass:
+            result = self.price * self.quantity + other.price * other.quantity
+            return result
+        else:
+            raise TypeError

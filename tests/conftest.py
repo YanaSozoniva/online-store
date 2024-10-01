@@ -3,6 +3,7 @@ import pytest
 from src.category import Category
 from src.product import Product
 from src.product_iterator import ProductIterator
+from src.smartphone import Smartphone
 
 
 @pytest.fixture()
@@ -66,6 +67,12 @@ def json_data():
     return test_dict
 
 
-@pytest.fixture()
+@pytest.fixture
 def product_iterator(category_1):
     return ProductIterator(category_1)
+
+
+@pytest.fixture
+def smartphone1():
+    return Smartphone("Xiaomi Redmi Note 11", "1024GB, Синий", 31000.0, 14, 90.3, "Note 11", 1024, "Синий")
+

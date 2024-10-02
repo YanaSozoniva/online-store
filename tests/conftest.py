@@ -5,6 +5,7 @@ from src.lawn_grass import LawnGrass
 from src.product import Product
 from src.product_iterator import ProductIterator
 from src.smartphone import Smartphone
+from src.order import Order
 
 
 @pytest.fixture()
@@ -91,3 +92,13 @@ def grass1():
 @pytest.fixture
 def grass2():
     return LawnGrass("Газонная трава 2", "Выносливая трава", 450.0, 15, "США", "5 дней", "Темно-зеленый")
+
+
+@pytest.fixture
+def order1(product_2):
+    return Order(product_2, 2)
+
+
+@pytest.fixture
+def order2(smartphone1):
+    return Order(smartphone1, 16)

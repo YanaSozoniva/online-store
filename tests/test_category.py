@@ -47,6 +47,7 @@ def test_category_str(category_1):
 
 
 def test_product_iterator(product_iterator):
+    """Тестирование работы итератора"""
     iter(product_iterator)
 
     assert product_iterator.index == 0
@@ -57,3 +58,31 @@ def test_product_iterator(product_iterator):
 
     with pytest.raises(StopIteration):
         next(product_iterator)
+
+
+def test_category_add_product_error(category_1):
+    """Тестирование возникновения ошибки при попытке добавить в категорию не продукт"""
+    with pytest.raises(TypeError):
+        category_1.add_product("No")
+
+
+def test_category_add_product_smartphone(category_1, smartphone1):
+    """Тестирования успешного добавления в категорию объекта класса Smartphone"""
+    category_1.add_product(smartphone1)
+    assert category_1.products == (
+        "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+    )
+
+
+def test_category_add_product_grass(category_1, grass1):
+    """Тестирования успешного добавления в категорию объекта класса LawnGrass"""
+    category_1.add_product(grass1)
+    assert category_1.products == (
+        "Samsung Galaxy S23, 180000.0 руб. Остаток: 5 шт.\n"
+        "Iphone 15, 210000.0 руб. Остаток: 8 шт.\n"
+        "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
+        "Газонная трава, 500.0 руб. Остаток: 20 шт.\n"
+    )

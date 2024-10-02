@@ -12,7 +12,7 @@ class Category:
     count_products = 0
 
     def __init__(self, name, description, products=None):
-        """Метод для инициализации экземпляра класса Категории продукта. Задаем значения атрибутам экземпляра."""
+        """Метод для инициализации экземпляра класса Категории продукта. Задает значения атрибутам экземпляра."""
         self.name = name
         self.description = description
         self.__products = products if products else []
@@ -41,5 +41,8 @@ class Category:
 
     def add_product(self, product: Product):
         """Метод для добавления товаров в категорию"""
-        self.__products.append(product)
-        Category.count_products += 1
+        if isinstance(product, Product):
+            self.__products.append(product)
+            Category.count_products += 1
+        else:
+            raise TypeError

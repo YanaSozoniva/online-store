@@ -1,6 +1,6 @@
-from src.product import Product
 from src.base_cat_order import BaseCatOrder
 from src.exception import ZeroQuantityProduct
+from src.product import Product
 
 
 class Category(BaseCatOrder):
@@ -54,7 +54,7 @@ class Category(BaseCatOrder):
                 Category.count_products += 1
                 print("Товар успешно добавлен")
             finally:
-                print('Обработка добавления товара завершена')
+                print("Обработка добавления товара завершена")
         else:
             raise TypeError
 

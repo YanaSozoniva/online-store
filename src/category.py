@@ -1,5 +1,6 @@
 from src.product import Product
 from src.base_cat_order import BaseCatOrder
+from src.exception import ZeroQuantityProduct
 
 
 class Category(BaseCatOrder):
@@ -43,8 +44,17 @@ class Category(BaseCatOrder):
     def add_product(self, product: Product):
         """Метод для добавления товаров в категорию"""
         if isinstance(product, Product):
-            self.__products.append(product)
-            Category.count_products += 1
+            try:
+                if product.quantity == 0:
+                    raise ZeroQuantityProduct("Нельзя добавить товар с нулевым количеством")
+            except ZeroDivisionError as e:
+                print(str(e))
+            else:
+                self.__products.append(product)
+                Category.count_products += 1
+                print("Товар успешно добавлен")
+            finally:
+                print('Обработка добавления товара завершена')
         else:
             raise TypeError
 

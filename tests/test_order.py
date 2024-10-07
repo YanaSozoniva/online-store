@@ -1,3 +1,9 @@
+from src.order import Order
+from src.exception import ZeroQuantityProduct
+import pytest
+
+
+
 def test_order_init(order1, order2):
     """Тестирования инициализации объекта класса Заказ"""
     assert order1.quantity == 2
@@ -11,3 +17,21 @@ def test_order_init(order1, order2):
 def test_order_str(order1):
     """Тестирование магического метода str класса Заказ"""
     assert str(order1) == "Заказ товара Iphone 15, количество заказанного товара: 2 шт. Сумма заказа 420000"
+
+
+def test_custom_exception_product_order(capsys, product_2):
+    """Тестирование добавления товара с нулевым количеством"""
+    with pytest.raises(ZeroQuantityProduct):
+        Order(product_2, 0)
+        message = capsys.readouterr()
+        assert message.out.strip().split('\n')[-2] == 'Нельзя заказать товар с нулевым количеством'
+        assert message.out.strip().split('\n')[-1] == 'Обработка добавления товара завершена'
+
+
+def test_add_product_order_success(capsys, product_2):
+    """Тестирование добавления товара с нулевым количеством"""
+    Order(product_2, 2)
+
+    message = capsys.readouterr()
+    assert message.out.strip().split('\n')[-2] == 'Товар успешно добавлен'
+    assert message.out.strip().split('\n')[-1] == 'Обработка добавления товара завершена'

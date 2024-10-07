@@ -37,3 +37,7 @@ exclude = 'venv'
 
 [tool.isort]
 line_length = 119
+
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report term-missing"

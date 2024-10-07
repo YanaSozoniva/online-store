@@ -1,5 +1,7 @@
 from unittest.mock import patch
 
+import pytest
+
 from src.product import Product
 
 
@@ -87,3 +89,11 @@ def test_product_str(product_1):
 def test_products_add(product_1, product_2):
     """Тестирование суммы произведений цены на количество у двух объектов класса Product"""
     assert product_1 + product_2 == 1165500
+
+
+def test_zero_quantity_add_product():
+    """Тестирование возбуждения ошибки при попытке добавить товар с нулевым количеством"""
+    with pytest.raises(ValueError):
+        Product(
+            name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=23100, quantity=0
+        )

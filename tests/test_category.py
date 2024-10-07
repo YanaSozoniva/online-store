@@ -1,4 +1,5 @@
 import pytest
+from src.category import Category
 
 
 def test_category(category_1, category_2):
@@ -86,3 +87,17 @@ def test_category_add_product_grass(category_1, grass1):
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
         "Газонная трава, 500.0 руб. Остаток: 20 шт.\n"
     )
+
+
+def test_middle_price(category_2):
+    """Тестирование вычисления среднего ценника всех товаров"""
+    assert category_2.middle_price() == 123000.0
+
+
+def test__middle_price_zero_product():
+    """Тестирование вычисления среднего ценника всех товаров при пустом списке товаров"""
+    cat = Category(
+        name="Телевизоры",
+        description="Современный телевизор, который позволяет наслаждаться просмотром",
+        products=[],)
+    assert cat.middle_price() == 0

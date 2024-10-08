@@ -1,5 +1,8 @@
 import pytest
 
+from src.category import Category
+from src.product import Product
+
 
 def test_category(category_1, category_2):
     """Тестирование корректности инициализации объектов класса Category"""
@@ -86,3 +89,42 @@ def test_category_add_product_grass(category_1, grass1):
         "Xiaomi Redmi Note 11, 31000.0 руб. Остаток: 14 шт.\n"
         "Газонная трава, 500.0 руб. Остаток: 20 шт.\n"
     )
+
+
+def test_middle_price(category_2):
+    """Тестирование вычисления среднего ценника всех товаров"""
+    assert category_2.middle_price() == 123000.0
+
+
+def test__middle_price_zero_product():
+    """Тестирование вычисления среднего ценника всех товаров при пустом списке товаров"""
+    cat = Category(
+        name="Телевизоры",
+        description="Современный телевизор, который позволяет наслаждаться просмотром",
+        products=[],
+    )
+    assert cat.middle_price() == 0
+
+
+def test_custom_exception_product(capsys, category_1):
+    """Тестирование добавления товара с нулевым количеством"""
+
+    with pytest.raises(ValueError):
+        product_add = Product(
+            name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=23100, quantity=0
+        )
+        category_1.add_product = product_add
+        message = capsys.readouterr()
+
+        assert message.out.strip().split("\n")[-1] == "Товар с нулевым количеством не может быть добавлен"
+
+
+def test_add_product_success(capsys, category_1):
+    """Тестирование добавления товара с нулевым количеством"""
+    product_add = Product(
+        name="Samsung Galaxy S23 Ultra", description="256GB, Серый цвет, 200MP камера", price=23100, quantity=1
+    )
+    category_1.add_product(product_add)
+    message = capsys.readouterr()
+    assert message.out.strip().split("\n")[-2] == "Товар успешно добавлен"
+    assert message.out.strip().split("\n")[-1] == "Обработка добавления товара завершена"
